@@ -1,4 +1,5 @@
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { ScheduleItem, ScheduleList } from '../../../shared/services/schedule.service';
 
 @Component({
   selector: 'app-schedule-calendar',
@@ -16,6 +17,12 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
         (select)="selectDay($event)">
       </app-schedule-days>
 
+      <app-schedule-section
+        *ngFor="let section of sections"
+        [name]="section.name"
+        [section]="getSection(section.key)">
+      </app-schedule-section>
+
     </div>
   `
 })
@@ -25,10 +32,20 @@ export class ScheduleCalendarComponent implements OnChanges {
   selectedDay: Date;
   selectedWeek: Date;
 
+  sections = [
+    { key: 'morning', name: 'Morning' },
+    { key: 'lunch', name: 'Lunch' },
+    { key: 'evening', name: 'Evening' },
+    { key: 'snacks', name: 'Snacks and Drinks' },
+  ];
+
   @Input()
   set date(date: Date) {
     this.selectedDay = new Date(date.getTime());
   }
+
+  @Input()
+  items: ScheduleList;
 
   @Output()
   change = new EventEmitter<Date>();
@@ -38,6 +55,10 @@ export class ScheduleCalendarComponent implements OnChanges {
   ngOnChanges() {
     this.selectedDayIndex = this.getToday(this.selectedDay);
     this.selectedWeek = this.getStartOfWeek(new Date(this.selectedDay));
+  }
+
+  getSection(name: string): ScheduleItem {
+    return this.items && this.items[name] || {};
   }
 
   selectDay(index: number) {
