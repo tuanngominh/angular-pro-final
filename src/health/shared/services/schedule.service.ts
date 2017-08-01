@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Store } from 'store';
+import { Store } from '../../../store';
 
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
