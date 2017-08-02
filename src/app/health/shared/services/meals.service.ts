@@ -25,7 +25,7 @@ export class MealsService {
   ) {}
 
   get uid() {
-    return this.authService.user.uid;
+    return this.authService.user ? this.authService.user.uid : null;
   }
 
   getMeal(key: string) {
@@ -39,8 +39,11 @@ export class MealsService {
     return this.db.list(`meals/${this.uid}`).push(meal);
   }
 
-  updateMeal(key: string, meal: Meal) {
-    return this.db.object(`meals/${this.uid}/${key}`).update(meal);
+  updateMeal(meal: Meal) {
+    const data = {...meal};
+    delete data.$key;
+    const key = meal.$key;
+    return this.db.object(`meals/${this.uid}/${key}`).update(data);
   }
 
   removeMeal(key: string) {

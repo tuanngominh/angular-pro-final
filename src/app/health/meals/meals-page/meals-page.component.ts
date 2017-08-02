@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Store } from '../../../../store';
-
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 
-import { MealsService } from '../../shared/services/meals.service';
 import {Meal} from '../../shared/types/meal';
+import * as MealActions from '../../shared/actions/meals.actions';
+
+import {Store} from '@ngrx/store';
+import * as fromMeals from '../meals.reducer';
 
 @Component({
   selector: 'app-meals',
@@ -16,24 +16,22 @@ import {Meal} from '../../shared/types/meal';
 export class MealsComponent implements OnInit, OnDestroy {
 
   meals$: Observable<Meal[]>;
-  subscription: Subscription;
 
   constructor(
-    private store: Store,
-    private mealsService: MealsService
+    private store: Store<fromMeals.MealsState>
   ) {}
 
   ngOnInit() {
-    this.meals$ = this.store.select<Meal[]>('meals');
-    this.subscription = this.mealsService.meals$.subscribe();
+    this.store.dispatch(new MealActions.SubscribeMeals());
+    this.meals$ = this.store.select(fromMeals.getEntities);
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.store.dispatch(new MealActions.UnsubscribeMeals());
   }
 
   removeMeal(event: Meal) {
-    this.mealsService.removeMeal(event.$key);
+    this.store.dispatch(new MealActions.RemoveMeal({meal: event}));
   }
 
 }

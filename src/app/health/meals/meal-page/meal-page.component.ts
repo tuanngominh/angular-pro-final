@@ -1,47 +1,50 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
 import { MealsService} from '../../shared/services/meals.service';
 import {Meal} from '../../shared/types/meal';
+import * as MealActions from '../../shared/actions/meals.actions';
+import * as fromMeals from '../meals.reducer';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-meal',
   styleUrls: ['meal-page.component.scss'],
   templateUrl: 'meal-page.component.html'
 })
-export class MealComponent implements OnInit, OnDestroy {
+export class MealComponent implements OnInit {
 
   meal$: Observable<Meal>;
-  subscription: Subscription;
 
   constructor(
     private mealsService: MealsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private store: Store<fromMeals.MealsState>
   ) {}
 
   ngOnInit() {
-    this.subscription = this.mealsService.meals$.subscribe();
-    this.meal$ = this.route.params
-      .switchMap(param => this.mealsService.getMeal(param.id));
+    if (this.route.snapshot.params.id) {
+      this.store.dispatch(new MealActions.LoadSingleMeal({mealId: this.route.snapshot.params.id}))
+    }
+
+    this.meal$ = this.store.select(fromMeals.getMeal);
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  async addMeal(event: Meal) {
-    await this.mealsService.addMeal(event);
+  addMeal(event: Meal) {
+    this.store.dispatch(new MealActions.AddMeal({ meal: event }));
     this.backToMeals();
   }
 
-  async updateMeal(event: Meal) {
+  updateMeal(event: Meal) {
     const key = this.route.snapshot.params.id;
-    await this.mealsService.updateMeal(key, event);
+    this.store.dispatch(new MealActions.UpdateMeal({ meal: {
+      ...event,
+      $key: key
+    }}));
     this.backToMeals();
   }
 
