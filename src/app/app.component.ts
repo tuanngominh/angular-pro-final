@@ -4,28 +4,15 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { Store } from '../../../store';
+import { Store } from '../store';
 
-import { AuthService} from '../../auth/shared/services/auth.service';
-import {User} from '../../auth/shared/types/user';
+import { AuthService} from './auth/shared/services/auth.service';
+import {User} from './auth/shared/types/user';
 
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
-  template: `
-    <div>
-      <app-header
-        [user]="user$ | async"
-        (logout)="onLogout()">
-      </app-header>
-      <app-nav
-        *ngIf="(user$ | async)?.authenticated">
-      </app-nav>
-      <div class="wrapper">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  `
+  templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit, OnDestroy {
 

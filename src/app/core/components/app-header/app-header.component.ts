@@ -1,23 +1,12 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
-import { User } from '../../auth/shared/types/user';
+import { User } from '../../../auth/shared/types/user';
 
 @Component({
   selector: 'app-header',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['app-header.component.scss'],
-  template: `
-    <div class="app-header">
-      <div class="wrapper">
-        <img src="assets/logo.svg">
-        <div
-          class="app-header__user-info"
-          *ngIf="user?.authenticated">
-          <span (click)="logoutUser()"></span>
-        </div>
-      </div>
-    </div>
-  `
+  templateUrl: 'app-header.component.html'
 })
 export class AppHeaderComponent {
 
