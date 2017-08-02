@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Store } from '../../../store';
 
-import { AuthService, User } from '../../../auth/shared/services/auth.service';
+import { AuthService} from '../../auth/shared/services/auth.service';
+import {User} from '../../auth/shared/types/user';
 
 @Component({
   selector: 'app-root',
