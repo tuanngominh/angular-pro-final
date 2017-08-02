@@ -1,42 +1,23 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Store } from '../../../../../store';
+import { Store } from '../../../../store';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { ScheduleService} from '../../../shared/services/schedule.service';
-import { MealsService } from '../../../shared/services/meals.service';
-import { WorkoutsService } from '../../../shared/services/workouts.service';
-import {Workout} from '../../../shared/types/workout';
-import {Meal} from '../../../shared/types/meal';
-import {ScheduleItem} from '../../../shared/types/schedule-item';
+import { ScheduleService} from '../../shared/services/schedule.service';
+import { MealsService } from '../../shared/services/meals.service';
+import { WorkoutsService } from '../../shared/services/workouts.service';
+import {Workout} from '../../shared/types/workout';
+import {Meal} from '../../shared/types/meal';
+import {ScheduleItem} from '../../shared/types/schedule-item';
 
 @Component({
   selector: 'app-schedule',
-  styleUrls: ['schedule.component.scss'],
-  template: `
-    <div class="schedule">
-
-      <app-schedule-calendar
-        [date]="date$ | async"
-        [items]="schedule$ | async"
-        (change)="changeDate($event)"
-        (select)="changeSection($event)">
-      </app-schedule-calendar>
-
-      <app-schedule-assign
-        *ngIf="open"
-        [section]="selected$ | async"
-        [list]="list$ | async"
-        (update)="assignItem($event)"
-        (cancel)="closeAssign()">
-      </app-schedule-assign>
-
-    </div>
-  `
+  styleUrls: ['schedule-page.component.scss'],
+  templateUrl: 'schedule-page.component.html'
 })
-export class ScheduleComponent implements OnInit, OnDestroy {
+export class SchedulePageComponent implements OnInit, OnDestroy {
 
   open = false;
 

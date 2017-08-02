@@ -5,28 +5,7 @@ import {ScheduleItem} from '../../../shared/types/schedule-item';
 @Component({
   selector: 'app-schedule-calendar',
   styleUrls: ['schedule-calendar.component.scss'],
-  template: `
-    <div class="calendar">
-
-      <app-schedule-controls
-        [selected]="selectedDay"
-        (move)="onChange($event)">
-      </app-schedule-controls>
-
-      <app-schedule-days
-        [selected]="selectedDayIndex"
-        (select)="selectDay($event)">
-      </app-schedule-days>
-
-      <app-schedule-section
-        *ngFor="let section of sections"
-        [name]="section.name"
-        [section]="getSection(section.key)"
-        (select)="selectSection($event, section.key)">
-      </app-schedule-section>
-
-    </div>
-  `
+  templateUrl: 'schedule-calendar.component.html'
 })
 export class ScheduleCalendarComponent implements OnChanges {
 

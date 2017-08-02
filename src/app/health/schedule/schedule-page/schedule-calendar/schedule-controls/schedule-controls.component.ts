@@ -4,23 +4,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
   selector: 'app-schedule-controls',
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['schedule-controls.component.scss'],
-  template: `
-    <div class="controls">
-
-      <button
-        type="button"
-        (click)="moveDate(offset - 1)">
-        <img src="assets/chevron-left.svg">
-      </button>
-      <p>{{ selected | date:'yMMMMd' }}</p>
-      <button
-        type="button"
-        (click)="moveDate(offset + 1)">
-        <img src="assets/chevron-right.svg">
-      </button>
-
-    </div>
-  `
+  templateUrl: 'schedule-controls.component.html'
 })
 export class ScheduleControlsComponent {
 

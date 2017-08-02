@@ -5,14 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ScheduleRoutingModule } from './schedule-routing.module'
 // components
-import { ScheduleCalendarComponent } from './components/schedule-calendar/schedule-calendar.component';
-import { ScheduleDaysComponent } from './components/schedule-days/schedule-days.component';
-import { ScheduleControlsComponent } from './components/schedule-controls/schedule-controls.component';
+import { ScheduleCalendarComponent } from './schedule-page/schedule-calendar/schedule-calendar.component';
+import { ScheduleDaysComponent } from './schedule-page/schedule-calendar/schedule-days/schedule-days.component';
+import { ScheduleControlsComponent } from './schedule-page/schedule-calendar/schedule-controls/schedule-controls.component';
 
 // containers
-import { ScheduleComponent } from './containers/schedule/schedule.component';
-import {ScheduleSectionComponent} from './components/schedule-section/schedule-section.component';
-import {ScheduleAssignComponent} from './components/schedule-assign/schedule-assign.component';
+import { SchedulePageComponent } from './schedule-page/schedule-page.component';
+import {ScheduleSectionComponent} from './schedule-page/schedule-calendar/schedule-section/schedule-section.component';
+import {ScheduleAssignComponent} from './schedule-page/schedule-assign/schedule-assign.component';
 
 @NgModule({
   imports: [
@@ -22,7 +22,7 @@ import {ScheduleAssignComponent} from './components/schedule-assign/schedule-ass
     SharedModule
   ],
   declarations: [
-    ScheduleComponent,
+    SchedulePageComponent,
     ScheduleCalendarComponent,
     ScheduleDaysComponent,
     ScheduleControlsComponent,
