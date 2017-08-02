@@ -5,41 +5,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
-import { MealsService} from '../../../shared/services/meals.service';
-import {Meal} from '../../../shared/types/meal';
+import { MealsService} from '../../shared/services/meals.service';
+import {Meal} from '../../shared/types/meal';
 
 @Component({
   selector: 'app-meal',
-  styleUrls: ['meal.component.scss'],
-  template: `
-    <div class="meal">
-      <div class="meal__title">
-        <h1>
-          <img src="assets/food.svg">
-          <span *ngIf="meal$ | async as meal; else title;">
-            {{ meal.name ? 'Edit' : 'Create' }} meal
-          </span>
-          <ng-template #title>
-            Loading...
-          </ng-template>
-        </h1>
-      </div>
-      <div *ngIf="meal$ | async as meal; else loading;">
-        <app-meal-form
-          [meal]="meal"
-          (create)="addMeal($event)"
-          (update)="updateMeal($event)"
-          (remove)="removeMeal($event)">
-        </app-meal-form>
-      </div>
-      <ng-template #loading>
-        <div class="message">
-          <img src="assets/loading.svg">
-          Fetching meal...
-        </div>
-      </ng-template>
-    </div>
-  `
+  styleUrls: ['meal-page.component.scss'],
+  templateUrl: 'meal-page.component.html'
 })
 export class MealComponent implements OnInit, OnDestroy {
 

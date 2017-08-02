@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // containers
-import { MealsComponent } from './containers/meals/meals.component';
-import { MealComponent } from './containers/meal/meal.component';
+import { MealsComponent } from './meals-page/meals-page.component';
+import { MealComponent } from './meal-page/meal-page.component';
 
 
 export const ROUTES: Routes = [

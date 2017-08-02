@@ -5,11 +5,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 
 // components
-import { MealFormComponent } from './components/meal-form/meal-form.component';
+import { MealFormComponent } from './meal-page/meal-form/meal-form.component';
 
 // containers
-import { MealsComponent } from './containers/meals/meals.component';
-import { MealComponent } from './containers/meal/meal.component';
+import { MealsComponent } from './meals-page/meals-page.component';
+import { MealComponent } from './meal-page/meal-page.component';
 import { MealsRoutingModule } from './meals-routing.module';
 
 @NgModule({

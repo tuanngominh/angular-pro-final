@@ -5,43 +5,15 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/switchMap';
 
-import { WorkoutsService} from '../../../shared/services/workouts.service';
-import {Workout} from '../../../shared/types/workout';
+import { WorkoutsService} from '../../shared/services/workouts.service';
+import {Workout} from '../../shared/types/workout';
 
 @Component({
-  selector: 'app-workout',
-  styleUrls: ['workout.component.scss'],
-  template: `
-    <div class="workout">
-      <div class="workout__title">
-        <h1>
-          <img src="assets/workout.svg">
-          <span *ngIf="workout$ | async as workout; else title;">
-            {{ workout.name ? 'Edit' : 'Create' }} workout
-          </span>
-          <ng-template #title>
-            Loading...
-          </ng-template>
-        </h1>
-      </div>
-      <div *ngIf="workout$ | async as workout; else loading;">
-        <app-workout-form
-          [workout]="workout"
-          (create)="addWorkout($event)"
-          (update)="updateWorkout($event)"
-          (remove)="removeWorkout($event)">
-        </app-workout-form>
-      </div>
-      <ng-template #loading>
-        <div class="message">
-          <img src="assets/loading.svg">
-          Fetching workout...
-        </div>
-      </ng-template>
-    </div>
-  `
+  selector: 'app-workout-page',
+  styleUrls: ['workout-page.component.scss'],
+  templateUrl: 'workout-page.component.html'
 })
-export class WorkoutComponent implements OnInit, OnDestroy {
+export class WorkoutPageComponent implements OnInit, OnDestroy {
 
   workout$: Observable<Workout>;
   subscription: Subscription;

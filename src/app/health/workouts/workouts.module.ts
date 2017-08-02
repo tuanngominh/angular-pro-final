@@ -4,10 +4,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { WorkoutsRoutingModule } from './workouts-routing.module';
 // containers
-import { WorkoutsComponent } from './containers/workouts/workouts.component';
-import {WorkoutComponent} from './containers/workout/workout.component';
-import {WorkoutFormComponent} from './components/workout-form/workout-form.component';
-import {WorkoutTypeComponent} from './components/workout-type/workout-type.component';
+import { WorkoutsComponent } from './workouts-page/workouts.component';
+import {WorkoutPageComponent} from './workout-page/workout-page.component';
+import {WorkoutFormComponent} from './workout-page/workout-form/workout-form.component';
+import {WorkoutTypeComponent} from './workout-page/workout-form/workout-type/workout-type.component';
 import {SharedModule} from '../shared/shared.module';
 
 
@@ -20,7 +20,7 @@ import {SharedModule} from '../shared/shared.module';
   ],
   declarations: [
     WorkoutsComponent,
-    WorkoutComponent,
+    WorkoutPageComponent,
     WorkoutFormComponent,
     WorkoutTypeComponent
 

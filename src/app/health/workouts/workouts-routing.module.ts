@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { WorkoutsComponent } from './containers/workouts/workouts.component';
-import {WorkoutComponent} from './containers/workout/workout.component';
+import { WorkoutsComponent } from './workouts-page/workouts.component';
+import {WorkoutPageComponent} from './workout-page/workout-page.component';
 
 export const ROUTES: Routes = [
   { path: '', component: WorkoutsComponent },
-  { path: 'new', component: WorkoutComponent },
-  { path: ':id', component: WorkoutComponent }
+  { path: 'new', component: WorkoutPageComponent },
+  { path: ':id', component: WorkoutPageComponent }
 ];
 
 @NgModule({
