@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './containers/register/register.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterRoutingModule } from './register-routing.module';
 
@@ -10,6 +10,6 @@ import { RegisterRoutingModule } from './register-routing.module';
     RegisterRoutingModule,
     SharedModule
   ],
-  declarations: [RegisterComponent]
+  declarations: [RegisterPageComponent]
 })
 export class RegisterModule { }

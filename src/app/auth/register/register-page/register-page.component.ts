@@ -2,26 +2,13 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../../shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
-  template: `
-    <div>
-      <app-auth-form (submitted)="registerUser($event)">
-        <h1>Register</h1>
-        <a routerLink="/auth/login">Already have an account?</a>
-        <button type="submit">
-          Create account
-        </button>
-        <div class="error" *ngIf="error">
-          {{ error }}
-        </div>
-      </app-auth-form>
-    </div>
-  `
+  templateUrl: './register-page.component.html'
 })
-export class RegisterComponent {
+export class RegisterPageComponent {
 
   error: string;
 
