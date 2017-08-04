@@ -11,13 +11,11 @@ export class SubscribePath implements Action {
   constructor(
     // firebase path
     public path: string,
-    public config: {
+    public config?: {
       // ngrx path
       storePath?: string
       // result store as list
-      asList?: boolean,
-      // unsubscribe when receive this action
-      unsubscribe: string,
+      asList?: boolean
     }
   ) {}
 }
@@ -32,7 +30,7 @@ export class DataReceived implements Action {
   constructor(public path: string, public data: any) {}
 }
 
-export class UnsubcribePath implements  Action {
+export class UnsubscribePath implements  Action {
   readonly type  = UNSUBCRIBE_PATH;
   constructor(public path: string) {}
 }
@@ -41,4 +39,4 @@ export type All
   = SubscribePath
   | SubscribePathError
   | DataReceived
-  | UnsubcribePath;
+  | UnsubscribePath;

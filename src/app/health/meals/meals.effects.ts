@@ -8,7 +8,6 @@ import { Action } from '@ngrx/store';
 import { Actions, Effect, toPayload } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import * as MealActions from '../shared/actions/meals.actions';
-import * as DataActions from '../../core/data/data.actions';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {AuthService} from '../../auth/shared/services/auth.service';
 import {Meal} from '../shared/types/meal';
@@ -16,15 +15,6 @@ import {MealsService} from '../shared/services/meals.service';
 
 @Injectable()
 export class MealsEffects {
-
-  @Effect() loadMeals$: Observable<Action> = this.actions$.ofType(MealActions.MEALS_SUBSCRIBE)
-    .map((action: MealActions.SubscribeMeals) =>
-      new DataActions.SubscribePath(`meals/${this.uid}`, {
-        storePath: 'meals',
-        asList: true,
-        unsubscribe: MealActions.MEALS_UNSUBSCRIBE
-      })
-    );
 
   @Effect({dispatch: false}) addMeal$ = this.actions$.ofType(MealActions.MEALS_ADD)
     .map(toPayload)
