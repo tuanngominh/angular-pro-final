@@ -19,10 +19,12 @@ import { AppNavComponent } from './core/components/app-nav/app-nav.component';
 
 // routes
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
     AuthModule,
     HealthModule,

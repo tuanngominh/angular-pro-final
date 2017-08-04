@@ -6,7 +6,7 @@ import {Meal} from '../../shared/types/meal';
 import * as MealActions from '../../shared/actions/meals.actions';
 
 import {Store} from '@ngrx/store';
-import * as fromMeals from '../meals.reducer';
+import * as fromRoot from '../../../app.reducer';
 
 @Component({
   selector: 'app-meals',
@@ -18,12 +18,12 @@ export class MealsComponent implements OnInit, OnDestroy {
   meals$: Observable<Meal[]>;
 
   constructor(
-    private store: Store<fromMeals.MealsState>
+    private store: Store<fromRoot.State>
   ) {}
 
   ngOnInit() {
     this.store.dispatch(new MealActions.SubscribeMeals());
-    this.meals$ = this.store.select(fromMeals.getEntities);
+    this.meals$ = this.store.select(state => state.data.meals);
   }
 
   ngOnDestroy() {
