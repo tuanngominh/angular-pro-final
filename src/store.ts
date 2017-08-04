@@ -4,10 +4,10 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { User } from './auth/shared/services/auth.service';
-import { Meal } from './health/shared/services/meals.service';
-import { Workout } from './health/shared/services/workouts.service';
-import { ScheduleItem } from './health/shared/services/schedule.service';
+import { User } from './app/auth/shared/types/user';
+import { Meal } from './app/health/shared/types/meal';
+import { Workout } from './app/health/shared/types/workout';
+import { ScheduleItem } from './app/health/shared/types/schedule-item';
 
 export interface State {
   user: User;

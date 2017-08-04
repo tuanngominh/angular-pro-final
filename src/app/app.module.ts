@@ -1,31 +1,37 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Routes, RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { Store } from '../store';
 
 // feature modules
-import { AuthModule } from '../auth/auth.module';
-import { HealthModule } from '../health/health.module';
+import { AuthModule } from './auth/auth.module';
+import { HealthModule } from './health/health.module';
 
 // containers
-import { AppComponent } from './containers/app/app.component';
+import { AppComponent } from './app.component';
 
 // components
-import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { AppNavComponent } from './components/app-nav/app-nav.component';
+import { AppHeaderComponent } from './core/components/app-header/app-header.component';
+import { AppNavComponent } from './core/components/app-nav/app-nav.component';
 
 // routes
-export const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'schedule' }
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    AppRoutingModule,
     AuthModule,
-    HealthModule
+    HealthModule,
+    AppRoutingModule,
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25
+    })
   ],
   declarations: [
     AppComponent,
